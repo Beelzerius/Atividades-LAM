@@ -7,6 +7,7 @@
     tools:context="com.example.alunos.jogoadvinhacao.Jogo">
 
     <TextView
+        android:id="@+id/rtl_mensagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/lblText"
@@ -16,21 +17,23 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/pt_numero"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:inputType="number"
         android:singleLine="false"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="273dp" />
+        app:layout_constraintTop_toTopOf="@+id/rtl_mensagem"
+        tools:layout_editor_absoluteX="85dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_chute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="340dp" />
+        android:layout_marginTop="36dp"
+        android:text="@string/lblButton"
+        app:layout_constraintTop_toBottomOf="@+id/pt_numero"
+        tools:layout_editor_absoluteX="145dp" />
 
 </android.support.constraint.ConstraintLayout>
