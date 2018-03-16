@@ -6,6 +6,10 @@
     <string name="lblFail">Errou!</string>
     <string name="lblM">O numero é maior!</string>
     <string name="lblL">O numero é menor!</string>
+    <string name="lblPoints">Placar</string>
+    <string name="lblBest">Melhor Placar:</string>
+    <string name="lblHist">Historico:</string>
     <string name="lblRestart">Reiniciar</string>
     <string name="lblText">Tente advinhar o numero!</string>
+    <string name="lblBack">Voltar</string>
 </resources>

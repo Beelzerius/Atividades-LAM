@@ -10,8 +10,7 @@ import android.widget.*;
 public class Jogo extends AppCompatActivity {
     public int numero;
     public int tentativas = 0;
-    public int maxTentativas = 3;
-    public int limite = 10;
+    public int limite = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,31 +22,24 @@ public class Jogo extends AppCompatActivity {
         return (gerador.nextInt()%limite)+1;
     }
     public void chutarNumero(View v) {
+        int chute = 0;
         TextView etiqueta = (TextView) findViewById(R.id.rtl_mensagem);
         EditText userInput = findViewById(R.id.pt_numero);
         Button button = (Button)findViewById(R.id.btn_chute);
-        if(tentativas != maxTentativas){
-            int chute = Integer.parseInt(userInput.getText().toString());
+        if(chute != numero){
+            tentativas++;
+            chute = Integer.parseInt(userInput.getText().toString());
             if(numero == chute){
-                tentativas = 3;
                 button.setText(R.string.lblRestart);
                 userInput.setText("");
                 etiqueta.setText(R.string.lblWin);
             }else{
-                tentativas++;
-                if(tentativas == maxTentativas){
-                    tentativas = 3;
-                    button.setText(R.string.lblRestart);
+                if(numero>chute){
                     userInput.setText("");
-                    etiqueta.setText(R.string.lblLose);
-                }else{
-                    if(numero>chute){
-                        userInput.setText("");
-                        etiqueta.setText(R.string.lblM);
-                    }else {
-                        userInput.setText("");
-                        etiqueta.setText(R.string.lblL);
-                    }
+                    etiqueta.setText(R.string.lblM);
+                }else {
+                    userInput.setText("");
+                    etiqueta.setText(R.string.lblL);
                 }
             }
         }else{
