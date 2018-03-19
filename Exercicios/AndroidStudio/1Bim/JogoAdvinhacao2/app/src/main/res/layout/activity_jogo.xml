@@ -49,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="296dp"
+        android:onClick="irPlacar"
         android:text="@string/lblPoints"
         app:layout_constraintBottom_toTopOf="@+id/pt_numero"
         app:layout_constraintEnd_toEndOf="parent"
