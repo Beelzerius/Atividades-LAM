@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.Random;
 import android.widget.*;
+import android.util.*;
 import android.*;
 
 public class Jogo extends AppCompatActivity {
@@ -23,7 +24,7 @@ public class Jogo extends AppCompatActivity {
     }
     public int gerarNumero(){
         Random gerador = new Random();
-        return (gerador.nextInt()%limite)+1;
+        return (gerador.nextInt(limite))+1;
     }
     public void chutarNumero(View v) {
         SharedPreferences arquivo = getPreferences(Context.MODE_PRIVATE);
@@ -32,40 +33,46 @@ public class Jogo extends AppCompatActivity {
         TextView etiqueta = (TextView) findViewById(R.id.rtl_mensagem);
         EditText userInput = findViewById(R.id.pt_numero);
         Button button = (Button)findViewById(R.id.btn_chute);
-        if(chute != numero){
-            tentativas++;
-            chute = Integer.parseInt(userInput.getText().toString());
-            if(numero == chute){
-                button.setText(R.string.lblRestart);
-                userInput.setText("");
-                etiqueta.setText(R.string.lblWin);
-                String rec = arquivo.getString("Best","0");
-                int melhor = Integer.parseInt(rec);
-                if (rec == "0" || melhor>tentativas) {
-                    editor.putString("Best",Integer.toString(tentativas));
+            try {
+                if(userInput.getText().toString() != "") {
+                    chute = Integer.parseInt(userInput.getText().toString());
+                }else{
+                    chute = -1;
                 }
-                rec = arquivo.getString("Hist","");
-                rec = Integer.toString(tentativas)+"/n"+rec;
-                editor.putString("Best",rec);
-
-            }else{
-                if(numero>chute){
+            } catch (Exception e) {
+                chute = 0;
+            }
+        if(chute!= numero){
+            tentativas++;
+            if(chute != -1){
+                if (numero > chute) {
                     userInput.setText("");
                     etiqueta.setText(R.string.lblM);
-                }else {
+                } else {
                     userInput.setText("");
                     etiqueta.setText(R.string.lblL);
                 }
+                if (chute == 0) {
+                    button.setText(R.string.lblButton);
+                    userInput.setText("");
+                    etiqueta.setText(R.string.lblText);
+                    numero = gerarNumero();
+                    tentativas = 0;
+                }
             }
         }else{
-            button.setText(R.string.lblButton);
+            button.setText(R.string.lblRestart);
             userInput.setText("");
-            etiqueta.setText(R.string.lblText);
-            numero = gerarNumero();
-            tentativas = 0;
+            etiqueta.setText(R.string.lblWin);
+            int melhor = arquivo.getInt("Best", 0);
+            if (melhor == 0 || melhor > tentativas) {
+                editor.putInt("Best",tentativas);
+            }
+            String rec = arquivo.getString("Hist", "");
+            rec = Integer.toString(tentativas) + "/n" + rec;
+            editor.putString("Hist", rec);
+            editor.commit();
         }
-
-
     }
     public void irPlacar(View v){
         Intent i = new Intent(Jogo.this, Placar.class);
