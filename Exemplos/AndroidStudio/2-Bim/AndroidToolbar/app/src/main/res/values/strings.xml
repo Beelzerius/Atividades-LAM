@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Android Toolbar</string>
+    <string name="action_settings">Configurações</string>
+    <string name="action_view_items">Visualizar</string>
+    <string name="action_new">Adicionar</string>
+    <string name="logo_des">App logo</string>
+    <string name="action_second">Segundo</string>
+</resources>
