@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">JogoAdvinhacao</string>
+    <string name="lblButton">Advinhar</string>
+    <string name="lblWin">Ganhou!</string>
+    <string name="lblLose">Perdeu!</string>
+    <string name="lblFail">Errou!</string>
+    <string name="lblM">O numero é maior!</string>
+    <string name="lblL">O numero é menor!</string>
+    <string name="lblRestart">Reiniciar</string>
+    <string name="lblText">Tente advinhar o numero!</string>
+</resources>
